@@ -6,12 +6,12 @@ url = Addressable::URI.new(
   scheme: 'http',
   host: 'localhost',
   port: 3000,
-  path: '/users/2',
+  path: '/contacts.json',
   # query_values: { :id => 1 }
 ).to_s
 
 begin
-  a = RestClient.delete(url)
+  a = RestClient.post(url, :contact => {:name => "Belda", :email => "emailaddress@email.com", :address => "100 Market Street, San Francisco, CA", :phone_number => 5555555555})
   p a
 rescue => e
   p e
