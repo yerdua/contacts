@@ -6,12 +6,12 @@ url = Addressable::URI.new(
   scheme: 'http',
   host: 'localhost',
   port: 3000,
-  path: '/login'
-  #query_values: { :id => 1 }
+  path: '/users/3/contacts.json',
+  query_values: { :token => "sNCx09brDzJKGCRcWw_7dg" }
 ).to_s
 
 begin
-  a = RestClient.post(url, :user_name => "app academy student", :password => "123")
+  a = RestClient.get(url)
   p a
 rescue => e
   p e
