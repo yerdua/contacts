@@ -3,6 +3,7 @@ class Contact < ActiveRecord::Base
 
   validates :address, :email, :name, :phone_number, :presence => :true
 
-  has_many :favorites
-  has_many :users, :through => :favorites
+  belongs_to :owner, :class_name => 'User'
+  has_one :favorite
+
 end

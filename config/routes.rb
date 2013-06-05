@@ -1,9 +1,11 @@
 FirstRoutes::Application.routes.draw do
   resources :users do
-    resources :contacts, :only => [:index]
+    resources :contacts
+    resources :favorites, :only => [:create, :destroy]
+    get 'favorite_contacts' => 'contacts#favorites'
   end
 
-  resources :contacts, :except => [:index]
-
-  resources :favorites, :only => [:create, :destroy]
+#  resources :token, :only => [:create, :destroy]
+  post 'login' => 'tokens#create'
+  delete 'logout' => 'tokens#destroy'
 end

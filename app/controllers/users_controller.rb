@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   def index
-#    render :text => "I'm in the index action!"
-#    render :json => params#.to_jso
     render :json => User.all
   end
 
@@ -26,12 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    if user
-      user.destroy
-      render :text => "successfully destroyed"
-    else
-      render :json => "user not found", status: :not_found
-    end
+    User.find(params[:id]).destroy
+    render :text => "successfully destroyed"
   end
 end
