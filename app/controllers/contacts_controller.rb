@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
-
+  before_filter :authenticate_user
+  
   def favorites
     favorites = Favorite.find_all_by_owner_id(params[:user_id])
                         .includes(:contacts)
@@ -12,6 +13,12 @@ class ContactsController < ApplicationController
     contacts = Contact.find_all_by_owner_id(params[:user_id])
 
     render :json => contacts
+  end
+  
+  def update
+    contact = Contact.find(params[:id])
+    contact.update_attributes(params[:contact])
+    render :json => contact
   end
 
   def show

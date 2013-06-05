@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_filter :authenticate_user
+  
   def create
     favorite = Favorite.new(params[:favorite].merge(
                                   :owner_id => params[:user_id]))

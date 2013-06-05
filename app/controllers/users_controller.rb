@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user, :except => [:create, :index]
+  before_filter :find_user, :except => [:index, :create]
+  
   def index
     render :json => User.all
   end
@@ -13,18 +16,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-    render :json => user
+    render :json => @user
   end
 
   def update
-    user = User.find(params[:id])
-    user.update_attributes(params[:user])
+    @user.update_attributes(params[:user])
     render :json => user
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     render :text => "successfully destroyed"
   end
+  
+  protected
+    def find_user
+      @user = User.find(params[:id])
+    end
 end
