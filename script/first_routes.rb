@@ -7,7 +7,7 @@ url = Addressable::URI.new(
   host: 'localhost',
   port: 3000,
   path: 'users/1/contacts/search.json',
-  query_values: { :token => "-SY-7VMOD1uKwSZV5H7_pQ", :name => 'a' }
+  query_values: { :token => "-SY-7VMOD1uKwSZV5H7_pQ", :search_type => :email, :value => '@' }
 ).to_s
 
 begin

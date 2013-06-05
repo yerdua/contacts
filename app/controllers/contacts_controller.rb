@@ -47,10 +47,8 @@ class ContactsController < ApplicationController
   end
   
   def search
-    if params[:name]
-      render :json => Contact.where('owner_id = ? AND name LIKE ?', current_user.id, "%#{params[:name]}%")
-    elsif params[:email]
-      render :json => Contact.where('owner_id = ? AND email LIKE ?', current_user.id, "%#{params[:email]}%")
-    end
+    contacts = Contact.where("owner_id = ? AND \"#{params[:search_type]}\" LIKE ?",
+                              current_user.id, "%#{params[:value]}%")
+    render :json => contacts
   end
 end
