@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :contacts, :foreign_key => :owner_id
   has_many :favorites, :foreign_key => :owner_id
-  has_many :favorite_contacts, :through => :favorites, :source => :contacts
+  has_many :favorite_contacts, :through => :favorites, :source => :contact
   has_many :tokens
 end

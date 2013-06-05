@@ -6,12 +6,12 @@ url = Addressable::URI.new(
   scheme: 'http',
   host: 'localhost',
   port: 3000,
-  path: 'users/1/contacts/1.json',
-  query_values: { :token => "-SY-7VMOD1uKwSZV5H7_pQ" }
+  path: 'users/1/contacts/search.json',
+  query_values: { :token => "-SY-7VMOD1uKwSZV5H7_pQ", :name => 'a' }
 ).to_s
 
 begin
-  a = RestClient.put(url, :contact => {:email => "somethingelse@email"})
+  a = RestClient.get(url)#, :favorite => {:contact_id => 2})
   p a
 rescue => e
   p e

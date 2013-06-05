@@ -1,8 +1,9 @@
 FirstRoutes::Application.routes.draw do
   resources :users do
+    get 'contacts/search' => 'contacts#search'
+    get 'contacts/favorites'=> 'contacts#favorites'
     resources :contacts
     resources :favorites, :only => [:create, :destroy]
-    get 'favorite_contacts' => 'contacts#favorites'
   end
 
 #  resources :token, :only => [:create, :destroy]

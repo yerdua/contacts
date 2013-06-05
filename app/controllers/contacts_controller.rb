@@ -45,4 +45,12 @@ class ContactsController < ApplicationController
       render :json => "contact not found", status: :not_found
     end
   end
+  
+  def search
+    if params[:name]
+      render :json => Contact.where('owner_id = ? AND name LIKE ?', current_user.id, "%#{params[:name]}%")
+    elsif params[:email]
+      render :json => Contact.where('owner_id = ? AND email LIKE ?', current_user.id, "%#{params[:email]}%")
+    end
+  end
 end
